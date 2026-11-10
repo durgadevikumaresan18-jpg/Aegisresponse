@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AegisResponse | Report Emergency</title><link rel="stylesheet" href="/static/app.css"></head><body>
+<header><a class="brand" href="/">Aegis<span>Response</span></a><nav><a href="/admin">Admin portal</a></nav></header>
+<main class="wrap narrow"><div class="eyebrow">COMMUNITY EMERGENCY REPORTING</div><h1>Report an emergency</h1><p class="muted">Share the incident details. Upload a photo or use voice input if typing is difficult.</p>
+<div class="notice">If anyone is in immediate danger, call your local emergency number. This prototype does not dispatch emergency services.</div>
+<form id="reportForm" class="card">
+<section class="photo">
+<div><b>Photo-to-report assistant</b><p class="muted small">Take a photo or upload one. The image assistant suggests report details for you to review.</p></div>
+<input id="photo" type="file" accept="image/png,image/jpeg,image/webp" capture="environment">
+<div class="actions photo-actions">
+<button id="cameraStart" type="button" class="btn secondary">Open camera</button>
+<button id="cameraCapture" type="button" class="btn secondary" disabled>Capture photo</button>
+<button id="cameraStop" type="button" class="btn secondary" disabled>Close camera</button>
+<button id="analyse" type="button" class="btn">Analyse photo</button>
+</div>
+<video id="cameraPreview" class="preview" autoplay playsinline muted hidden></video>
+<p id="photoMsg" class="small muted" aria-live="polite"></p>
+<img id="preview" class="preview" alt="Selected emergency photo preview" hidden>
+<p class="small muted">Photo analysis needs an internet connection and an OpenAI API key configured by the administrator. Always check the suggested details before submitting.</p>
+</section>
+<label>Incident title<input name="title" required maxlength="100" placeholder="Emergency near..."></label>
+<label>Description<textarea name="description" required rows="4" maxlength="1000" placeholder="Describe what happened"></textarea></label>
+<div class="grid"><label>Category<select name="category" required><option value="">Select</option><option>Fire Emergency</option><option>Road Accident</option><option>Medical Emergency</option><option>Flood</option><option>Building Collapse</option><option>Other Emergencies</option></select></label><label>Severity<select name="severity" required><option value="">Select</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select></label></div>
+<div class="grid"><label>People affected<input name="people" type="number" min="0" max="100000" value="1"></label><label>Contact (optional)<input name="contact" maxlength="100"></label></div>
+<label>Location / landmark<input name="location" id="location" required placeholder="Address or landmark"></label>
+<div class="grid"><label>Latitude<input name="latitude" id="lat" type="number" step="any" placeholder="GPS coordinates"></label><label>Longitude<input name="longitude" id="lon" type="number" step="any" placeholder="GPS coordinates"></label></div>
+<div class="actions"><button type="button" id="gps" class="btn secondary">Use my location</button><button type="button" id="voice" class="btn secondary">Voice input</button><button type="submit" class="btn">Submit report</button></div><p id="result" class="result" role="status"></p></form></main>
+<script src="/static/user.js"></script></body></html>
